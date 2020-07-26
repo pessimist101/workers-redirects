@@ -1,0 +1,29 @@
+name: Deploy to Workers Prod
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+      - name: Install Wrangler
+        run: sudo npm i @cloudflare/wrangler -g
+      - name: Build index.js
+        run: python3 ./build.py
+      - name: Enter wrangler dir
+        run: cd wrangler
+      - name: config wrangler
+        run: CF_API_TOKEN=${{ secrets.CF_API_TOKEN }} wrangler publish
+      - name: Commit index.js
+        uses: EndBug/add-and-commit@v4 # You can change this to use a specific version
+        with:
+          add: 'index.js'
+          author_name: Github Actions
+          message: 'Commit from GitHub Actions'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
