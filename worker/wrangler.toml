@@ -1,0 +1,6 @@
+name = "github-redirect"
+type = "javascript"
+account_id = "16f878167337b62bfa3ff5e6dc43f924"
+workers_dev = false
+route = "github.issy.dev/*"
+zone_id = "bc7bff033b9b169b4614cb8194b3145d"
