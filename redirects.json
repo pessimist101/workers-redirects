@@ -1,0 +1,8 @@
+{
+    "redirectRules": [
+        {
+            "conditions": "(path.split('/')[1] === 'gist') and (path.split('/').length === 3)",
+            "transformation": "path.split('/')[1] === 'gist') and (path.split('/').length === 3)"
+        }
+    ]
+}
